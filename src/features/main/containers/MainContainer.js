@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Layout from 'main/containers/LayoutContainer';
@@ -12,10 +13,10 @@ class MainContainer extends Component {
     this.props.loadMainContent();
   }
   render() {
-    const { mainContent } = this.props;
     return (
       <Layout>
-        <MainComponent content={mainContent} />
+        <Route exact path="/" component={MainComponent} />
+        <Route exact path="/campaigns" component={MainComponent}/>
       </Layout>
     );
   }
