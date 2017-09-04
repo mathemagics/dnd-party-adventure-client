@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { Map } from 'immutable';
 
-import MainContainer from 'features/main/containers/MainContainer';
+import MainContainer from 'main/containers/MainContainer';
 
 import reducers from './redux';
 

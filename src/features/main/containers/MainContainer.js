@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import MainComponent from '../components/MainComponent';
+import Layout from 'main/containers/LayoutContainer';
+import MainComponent from 'main/components/MainComponent';
+
 import { loadMainContent } from '../redux/MainDuck';
 
 class MainContainer extends Component {
@@ -12,7 +14,9 @@ class MainContainer extends Component {
   render() {
     const { mainContent } = this.props;
     return (
-      <MainComponent content={mainContent} />
+      <Layout>
+        <MainComponent content={mainContent} />
+      </Layout>
     );
   }
 }
