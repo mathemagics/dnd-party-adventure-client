@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Layout from 'main/containers/LayoutContainer';
 import MainComponent from 'main/components/MainComponent';
+import CampaignsContainer from 'campaigns/containers/CampaignsContainer';
 
 import { loadMainContent } from '../redux/MainDuck';
 
@@ -15,8 +16,10 @@ class MainContainer extends Component {
   render() {
     return (
       <Layout>
-        <Route exact path="/" component={MainComponent} />
-        <Route exact path="/campaigns" component={MainComponent}/>
+        <Switch>
+          <Route path="/campaigns" component={CampaignsContainer} />
+          <Route exact path="/" component={MainComponent} />
+        </Switch>
       </Layout>
     );
   }
@@ -24,7 +27,7 @@ class MainContainer extends Component {
 
 const mapStateToProps = state => ({ mainContent: state.getIn(['main', 'mainContent']) });
 
-export default connect(mapStateToProps, { loadMainContent })(MainContainer);
+export default withRouter(connect(mapStateToProps, { loadMainContent })(MainContainer));
 
 MainContainer.propTypes = {
   mainContent: PropTypes.string.isRequired,

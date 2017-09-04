@@ -4,7 +4,8 @@
     ["module-resolver", {
       "root": ["/"],
       "alias": {
-        "main": "./src/features/main"
+        "main": "./src/features/main",
+        "campaigns": "./src/features/campaigns"
       }
     }]
   ]

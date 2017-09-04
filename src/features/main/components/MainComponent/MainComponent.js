@@ -1,10 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const MainComponent = props => <div>{props.content || 'no-content'}</div>;
-
-MainComponent.propTypes = {
-  content: PropTypes.string.isRequired,
-};
+const MainComponent = () => <div>no-content</div>;
 
 export default MainComponent;
