@@ -7,7 +7,7 @@ import Layout from 'main/containers/LayoutContainer';
 import MainComponent from 'main/components/MainComponent';
 import CampaignsContainer from 'campaigns/containers/CampaignsContainer';
 
-import { loadMainContent } from '../redux/MainDuck';
+import { loadMainContent } from 'raft/MainDuck';
 
 class MainContainer extends Component {
   componentWillMount() {

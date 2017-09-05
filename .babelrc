@@ -1,11 +1,20 @@
 {
-  "presets": ["env", "stage-2", "react"],
+  "presets": [
+    [
+    "env", {
+      "targets": { "node": "7" }
+      }
+    ],
+    "es2017", "react"],
    "plugins": [
     ["module-resolver", {
       "root": ["/"],
       "alias": {
         "main": "./src/features/main",
-        "campaigns": "./src/features/campaigns"
+        "campaigns": "./src/features/campaigns",
+        "config": "./src/config",
+        "services": "./src/services",
+        "raft": "./src/redux"
       }
     }]
   ]
