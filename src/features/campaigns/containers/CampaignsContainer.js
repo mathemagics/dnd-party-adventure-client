@@ -19,9 +19,6 @@ CampaignsContainer.propTypes = {
   fetchCampaigns: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ campaigns }) => {
-  console.log(campaigns);
-  return { campaigns };
-};
+const mapStateToProps = ({ campaigns }) => ({ campaigns });
 
 export default connect(mapStateToProps, { fetchCampaigns })(CampaignsContainer);
