@@ -1,17 +1,19 @@
 import { fromJS, Map, List } from 'immutable';
+import axios from 'axios';
 
 import { getCampaigns } from 'services/campaignsService';
 
 const INITIAL_STATE = Map({
-  campaigns: List(),
+  campaignList: List(),
 });
 
 // action types
 const SET_CAMPAIGNS = 'SET_CAMPAIGNS';
 
 // actions
-export const fetchCampaigns = async () => async (dispatch) => {
-  const campaigns = await getCampaigns;
+export const fetchCampaigns = () => async (dispatch) => {
+  console.log('camp');
+  const campaigns = await axios.get('http://localhost:4000/campaigns');
   dispatch({
     type: SET_CAMPAIGNS,
     payload: fromJS(campaigns),
@@ -23,7 +25,7 @@ export const fetchCampaigns = async () => async (dispatch) => {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SET_CAMPAIGNS:
-      return state.merge({ campaigns: action.payload });
+      return state.merge({ campaignList: action.payload });
     default:
       return state;
   }

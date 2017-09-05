@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import { Map } from 'immutable';
 
 import MainContainer from 'main/containers/MainContainer';
@@ -15,7 +16,10 @@ const App = () => {
   /* eslint-disable no-underscore-dangle */
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   /* eslint-enable */
-  const store = createStore(reducers, initialState, composeEnhancers(), applyMiddleware());
+
+  const middleware = applyMiddleware(thunk);
+
+  const store = createStore(reducers, initialState, middleware, composeEnhancers);
   return (
     <Provider store={store}>
       <BrowserRouter>
