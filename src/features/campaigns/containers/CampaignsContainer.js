@@ -1,14 +1,20 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from 'react';
+import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import { list } from 'react-immutable-proptypes';
 
 import { fetchCampaigns } from 'raft/CampaignsDuck';
 import CampaignsIndex from 'campaigns/components/campaignsIndex';
 
-class CampaignsContainer extends Component {
+@connect((state) => {
+  const campaigns = state.getIn(['campaigns', 'campaignList']);
+  return { campaigns };
+}, { fetchCampaigns })
+
+export default class CampaignsContainer extends PureComponent {
   static propTypes = {
     campaigns: list.isRequired,
+    fetchCampaigns: func.isRequired,
   }
 
   componentDidMount() {
@@ -21,14 +27,3 @@ class CampaignsContainer extends Component {
     );
   }
 }
-
-CampaignsContainer.propTypes = {
-  fetchCampaigns: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => {
-  const campaigns = state.getIn(['campaigns', 'campaignList']);
-  return { campaigns };
-};
-
-export default connect(mapStateToProps, { fetchCampaigns })(CampaignsContainer);
