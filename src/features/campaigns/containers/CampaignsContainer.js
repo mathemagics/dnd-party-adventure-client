@@ -8,9 +8,18 @@ class CampaignsContainer extends Component {
     this.props.fetchCampaigns();
   }
 
+  renderCampaigns= () => (
+    this.props.campaigns.map((campaign) => {
+      console.log(campaign);
+      return (
+        <li>{campaign.get('title')}</li>
+      )
+    })
+  );
+
   render() {
     return (
-      <div>Campaigns</div>
+      <ul>{this.renderCampaigns()}</ul>
     );
   }
 }
@@ -19,6 +28,9 @@ CampaignsContainer.propTypes = {
   fetchCampaigns: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ campaigns }) => ({ campaigns });
+const mapStateToProps = (state) => {
+  const campaigns = state.getIn(['campaigns', 'campaignList']);
+  return { campaigns };
+}
 
 export default connect(mapStateToProps, { fetchCampaigns })(CampaignsContainer);

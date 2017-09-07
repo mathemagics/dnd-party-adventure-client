@@ -12,7 +12,7 @@ const SET_CAMPAIGNS = 'SET_CAMPAIGNS';
 
 // actions
 export const fetchCampaigns = () => async (dispatch) => {
-  const campaigns = await axios.get('http://localhost:4000/api/campaigns');
+  const campaigns = await getCampaigns();
   dispatch({
     type: SET_CAMPAIGNS,
     payload: fromJS(campaigns.data.campaigns),
