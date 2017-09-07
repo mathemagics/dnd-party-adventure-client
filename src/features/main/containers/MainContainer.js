@@ -30,6 +30,5 @@ const mapStateToProps = state => ({ mainContent: state.getIn(['main', 'mainConte
 export default withRouter(connect(mapStateToProps, { loadMainContent })(MainContainer));
 
 MainContainer.propTypes = {
-  mainContent: PropTypes.string.isRequired,
   loadMainContent: PropTypes.func.isRequired,
 };

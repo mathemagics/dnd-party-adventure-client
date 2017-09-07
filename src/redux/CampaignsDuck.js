@@ -1,5 +1,4 @@
 import { fromJS, Map, List } from 'immutable';
-import axios from 'axios';
 
 import { getCampaigns } from 'services/campaignsService';
 
