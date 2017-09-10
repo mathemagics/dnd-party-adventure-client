@@ -13,6 +13,7 @@ class CampaignsIndex extends React.PureComponent {
   )
 
   render() {
+    console.log(this.props.campaigns);
     return (
       <ul>{this.renderCampaigns()}</ul>
     );
