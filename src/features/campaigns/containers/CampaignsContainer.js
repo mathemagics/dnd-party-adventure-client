@@ -1,17 +1,20 @@
 import React, { PureComponent } from 'react';
 import { func } from 'prop-types';
-import { connect } from 'react-redux';
 import { list } from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 import { fetchCampaigns } from 'raft/CampaignsDuck';
 import CampaignsIndex from 'campaigns/components/campaignsIndex';
 
-@connect((state) => {
+const mapStateToPorops = (state) => {
   const campaigns = state.getIn(['campaigns', 'campaignList']);
   return { campaigns };
-}, { fetchCampaigns })
+}
 
-export default class CampaignsContainer extends PureComponent {
+@connect(mapStateToPorops, { fetchCampaigns })
+
+class CampaignsContainer extends PureComponent {
   static propTypes = {
     campaigns: list.isRequired,
     fetchCampaigns: func.isRequired,
@@ -21,9 +24,14 @@ export default class CampaignsContainer extends PureComponent {
     this.props.fetchCampaigns();
   }
 
+  renderIndex = () => <CampaignsIndex campaigns={this.props.campaigns} />
+
   render() {
+    const { match } = this.props;
     return (
-      <CampaignsIndex campaigns={this.props.campaigns} />
+      <Route exact path={match.url} render={this.renderIndex} />
     );
   }
 }
+
+export default withRouter(CampaignsContainer);

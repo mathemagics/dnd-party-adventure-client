@@ -9,6 +9,8 @@ import CampaignsContainer from 'campaigns/containers/CampaignsContainer';
 
 import { loadMainContent } from 'raft/MainDuck';
 
+const mapStateToProps = state => ({ mainContent: state.getIn(['main', 'mainContent']) });
+
 class MainContainer extends Component {
   componentWillMount() {
     this.props.loadMainContent();
@@ -24,8 +26,6 @@ class MainContainer extends Component {
     );
   }
 }
-
-const mapStateToProps = state => ({ mainContent: state.getIn(['main', 'mainContent']) });
 
 export default withRouter(connect(mapStateToProps, { loadMainContent })(MainContainer));
 
