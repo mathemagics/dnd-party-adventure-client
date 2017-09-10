@@ -1,17 +1,19 @@
 import React, { PureComponent } from 'react';
-import { func } from 'prop-types';
+import { func, string } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 
-class CampaignsCreate extends PureComponent {
+class CampaignsForm extends PureComponent {
   static propTypes = {
     onSubmit: func.isRequired,
     handleSubmit: func.isRequired,
+    title: string.isRequired,
   }
+
   render() {
     const { handleSubmit, onSubmit } = this.props;
     return (
       <div>
-        <h2>Create New Campaign</h2>
+        <h3>{this.props.title}</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label htmlFor="title">Title</label>
@@ -30,8 +32,4 @@ class CampaignsCreate extends PureComponent {
   }
 }
 
-const CampaignsCreateForm = reduxForm({
-  form: 'campaign',
-})(CampaignsCreate);
-
-export default CampaignsCreateForm;
+export default reduxForm({ form: 'campaign' })(CampaignsForm);

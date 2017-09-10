@@ -2,13 +2,13 @@ import React, { PureComponent } from 'react';
 import { func } from 'prop-types';
 import { list } from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 
 import { fetchCampaigns, createNewCampaign } from 'raft/CampaignsDuck';
 
 import CampaignsNav from 'campaigns/components/campaignsNav';
 import CampaignsIndex from 'campaigns/components/campaignsIndex';
-import CampaignsCreate from 'campaigns/components/campaignsCreate';
+import CampaignsForm from 'campaigns/components/campaignsForm';
 
 const mapStateToPorops = (state) => {
   const campaigns = state.getIn(['campaigns', 'campaignList']);
@@ -24,16 +24,12 @@ class CampaignsContainer extends PureComponent {
     createNewCampaign: func.isRequired,
   }
 
-  handleCreate = (props) => {
-    this.props.createNewCampaign(props);
-  }
-
   componentDidMount() {
     this.props.fetchCampaigns();
   }
 
   renderIndex = () => <CampaignsIndex campaigns={this.props.campaigns} />
-  renderCreate = () => <CampaignsCreate onSubmit={this.props.createNewCampaign} />
+  renderCreate = () => <CampaignsForm title="Create New Campaign" onSubmit={this.props.createNewCampaign} />
 
   render() {
     const { match } = this.props;
