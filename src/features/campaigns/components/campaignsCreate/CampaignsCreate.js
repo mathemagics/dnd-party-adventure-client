@@ -1,17 +1,18 @@
 import React, { PureComponent } from 'react';
+import { func } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 
 class CampaignsCreate extends PureComponent {
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('submitting', e);
+  static propTypes = {
+    onSubmit: func.isRequired,
+    handleSubmit: func.isRequired,
   }
-
   render() {
+    const { handleSubmit, onSubmit } = this.props;
     return (
       <div>
         <h2>Create New Campaign</h2>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label htmlFor="title">Title</label>
             <Field name="title" component="input" type="text" />

@@ -4,7 +4,7 @@ import { list } from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 
-import { fetchCampaigns } from 'raft/CampaignsDuck';
+import { fetchCampaigns, createNewCampaign } from 'raft/CampaignsDuck';
 
 import CampaignsNav from 'campaigns/components/campaignsNav';
 import CampaignsIndex from 'campaigns/components/campaignsIndex';
@@ -15,12 +15,17 @@ const mapStateToPorops = (state) => {
   return { campaigns };
 }
 
-@connect(mapStateToPorops, { fetchCampaigns })
+@connect(mapStateToPorops, { fetchCampaigns, createNewCampaign })
 
 class CampaignsContainer extends PureComponent {
   static propTypes = {
     campaigns: list.isRequired,
     fetchCampaigns: func.isRequired,
+    createNewCampaign: func.isRequired,
+  }
+
+  handleCreate = (props) => {
+    this.props.createNewCampaign(props);
   }
 
   componentDidMount() {
@@ -28,14 +33,16 @@ class CampaignsContainer extends PureComponent {
   }
 
   renderIndex = () => <CampaignsIndex campaigns={this.props.campaigns} />
+  renderCreate = () => <CampaignsCreate onSubmit={this.props.createNewCampaign} />
 
   render() {
     const { match } = this.props;
+    console.log('func', this.props.createNewCampaign);
     return (
       <div>
         <CampaignsNav match={match} />
         <Route exact path={match.url} render={this.renderIndex} />
-        <Route path={`${match.url}/create`} component={CampaignsCreate} />
+        <Route path={`${match.url}/create`} render={this.renderCreate} />
       </div>
     );
   }

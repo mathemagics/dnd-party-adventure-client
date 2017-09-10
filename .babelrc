@@ -1,14 +1,22 @@
 {
   "presets": [
     [
-    "env", {
-      "targets": { "node": "7" }
+      "env", {
+        "targets": {
+          "node": "7",
+          "browsers": ["last 2 versions"]
+        }
       }
     ],
     "es2017", "react"],
    "plugins": [
     "transform-decorators-legacy",
     "transform-class-properties",
+    "transform-object-rest-spread",
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }],
     ["module-resolver", {
       "root": ["/"],
       "alias": {
