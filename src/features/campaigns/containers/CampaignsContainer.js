@@ -28,8 +28,12 @@ class CampaignsContainer extends PureComponent {
     this.props.fetchCampaigns();
   }
 
-  renderIndex = () => <CampaignsIndex campaigns={this.props.campaigns} />
-  renderCreate = () => <CampaignsForm title="Create New Campaign" onSubmit={this.props.createNewCampaign} />
+  renderIndex = () => (
+    <CampaignsIndex campaigns={this.props.campaigns} match={this.props.match} />
+  );
+  renderCreate = () => (
+    <CampaignsForm title="Create New Campaign" onSubmit={this.props.createNewCampaign} />
+  );
 
   render() {
     const { match } = this.props;
