@@ -34,7 +34,7 @@ export default (state = INITIAL_STATE, action) => {
     case SET_CAMPAIGNS:
       return state.merge({ campaignList: action.payload });
     case CREATE_CAMPAIGN_SUCCESS:
-      return state.merge({ campaignList: state.campaignList.push(action.payload) });
+      return state.update('campaignList', campaignList => campaignList.push(action.payload));
     default:
       return state;
   }
