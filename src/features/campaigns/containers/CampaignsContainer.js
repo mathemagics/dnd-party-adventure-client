@@ -49,7 +49,7 @@ class CampaignsContainer extends PureComponent {
     const { url } = this.props.match;
     return (
       <div>
-        <CampaignsNav root={url} />
+        <CampaignsNav rootUrl={url} />
         <Switch>
           <Route exact path={url} render={this.renderIndex} />
           <Route exact path={`${url}/create`} render={this.renderCreate} />
