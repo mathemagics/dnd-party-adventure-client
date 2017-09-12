@@ -13,7 +13,6 @@ const CREATE_CAMPAIGN_SUCCESS = 'CREATE_CAMPAIGN_SUCCESS';
 // actions
 export const fetchCampaigns = () => async (dispatch) => {
   const campaigns = await getCampaigns();
-  console.log(campaigns);
   dispatch({
     type: SET_CAMPAIGNS,
     payload: fromJS(campaigns.data.campaigns),
